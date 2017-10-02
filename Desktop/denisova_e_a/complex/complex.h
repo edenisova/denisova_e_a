@@ -1,7 +1,7 @@
-#include <iostream>
-#include <iosfwd>
 #ifndef COMPLEX_H
 #define COMPLEX_H
+#include <iostream>
+#include <iosfwd>
 
 struct Complex
 {
