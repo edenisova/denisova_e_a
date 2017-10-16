@@ -6,7 +6,7 @@
 void Rational::bcd(int& num, int& denum)
 {
 	int numc = abs(num);
-	int denumc = denum;
+	int denumc = abs(denum);
 	while ((numc != 0) && (denumc != 0))
 		if (numc > denumc)
 			numc = numc%denumc;
@@ -17,6 +17,11 @@ void Rational::bcd(int& num, int& denum)
 		num /= (numc + denumc);
 		denum /= (numc + denumc);
 	}
+	if (denum < 0)
+	{
+		num = -num;
+		denum = abs(denum);
+	}
 }
 
 Rational::Rational(const int numerator) : Rational(numerator, 1)
@@ -25,11 +30,6 @@ Rational::Rational(const int numerator) : Rational(numerator, 1)
 
 Rational::Rational(const int numerator, const int denumerator) : num(numerator), denum(denumerator)
 {
-	if (denum < 0)
-	{
-		num = -num;
-		denum = abs(denum);
-	}
 	bcd(num, denum);
 }
 
@@ -96,12 +96,12 @@ Rational operator+(const Rational& rhs, const Rational& lhs)
 
 Rational operator+(const Rational& rhs, const int lhs)
 {
-	return Rational(rhs.num + lhs*rhs.denum, rhs.denum);
+	return (rhs + Rational(lhs));
 }
 
 Rational operator+(const int rhs, const Rational& lhs)
 {
-	return Rational(lhs.num + rhs*lhs.denum, lhs.denum);
+	return (Rational(rhs) + lhs);
 }
 
 Rational operator-(const Rational& rhs, const Rational& lhs)
@@ -123,42 +123,46 @@ Rational operator-(const Rational& rhs, const Rational& lhs)
 
 Rational operator-(const Rational& rhs, const int lhs)
 {
-	return Rational(rhs.num - lhs*rhs.denum, rhs.denum);
+	return (rhs - Rational(lhs));
 }
 
 Rational operator-(const int rhs, const Rational& lhs)
 {
-	return Rational(rhs*lhs.denum - lhs.num, lhs.denum);
+	return (Rational(rhs) - lhs);
 }
 
 Rational operator*(const Rational& rhs, const Rational& lhs)
 {
-	return Rational(rhs.num*lhs.num, rhs.denum*lhs.denum);
+	Rational rez(rhs);
+	rez *= lhs;
+	return rez;
 }
 
 Rational operator*(const Rational& rhs, const int lhs)
 {
-	return Rational(rhs.num*lhs, rhs.denum);
+	return (rhs*Rational(lhs));
 }
 
 Rational operator*(const int rhs, const Rational& lhs)
 {
-	return Rational(lhs.num*rhs, lhs.denum);
+	return (Rational(rhs)*lhs);
 }
 
 Rational operator/(const Rational& rhs, const Rational& lhs)
 {
-	return Rational(rhs.num*lhs.denum, rhs.denum*lhs.num);
+	Rational rez(rhs);
+	rez /= lhs;
+	return rez;
 }
 
 Rational operator/(const Rational& rhs, const int lhs)
 {
-	return Rational(rhs.num, rhs.denum*lhs);
+	return (rhs/Rational(lhs));
 }
 
 Rational operator/(const int rhs, const Rational& lhs)
 {
-	return Rational(lhs.num, lhs.denum*rhs);
+	return (Rational(rhs)/lhs);
 }
 
 Rational& Rational::operator+=(const int rhs)
@@ -226,6 +230,34 @@ Rational& Rational::operator/=(const Rational& rhs)
 	denum *= rhs.num;
 	bcd(num, denum);
 	return *this;
+}
+
+Rational& Rational::operator++()
+{
+	num += denum;
+	bcd(num, denum);
+	return *this;
+}
+
+Rational Rational::operator++(int)
+{
+	Rational initvalue(*this);
+	++(*this);
+	return initvalue;
+}
+
+Rational& Rational::operator--()
+{
+	num -= denum;
+	bcd(num, denum);
+	return *this;
+}
+
+Rational Rational::operator--(int)
+{
+	Rational initvalue(*this);
+	--(*this);
+	return initvalue;
 }
 
 std::ostream& Rational::writeTo(std::ostream& ostrm) const
