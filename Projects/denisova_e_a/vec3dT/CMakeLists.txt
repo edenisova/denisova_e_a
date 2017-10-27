@@ -1,0 +1,1 @@
+add_executable( vec3dT vec3dT.h vec3dT.cpp vec3dT_test.cpp )
