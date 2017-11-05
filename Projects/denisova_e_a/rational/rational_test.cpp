@@ -119,6 +119,8 @@ int main()
 	ratio5 /= ratio;
 	cout << ratio5 << endl;
 	cout << endl;
+	Rational ratio15(1, 0);
+	cout << ratio15;
 	char exit;
 	cin >> exit;
 	return 0;

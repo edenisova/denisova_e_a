@@ -2,6 +2,9 @@
 #include <sstream>
 #include "rational.h"
 #include <cmath>
+#include <stdexcept>
+
+using namespace std;
 
 void Rational::bcd(int& num, int& denum)
 {
@@ -28,8 +31,19 @@ Rational::Rational(const int numerator) : Rational(numerator, 1)
 {
 }
 
-Rational::Rational(const int numerator, const int denumerator) : num(numerator), denum(denumerator)
+Rational::Rational(const int numerator, const int denumerator) : num(numerator), denum(denumerator) 
 {
+	try
+	{
+		if (denum == 0)
+		{
+			throw invalid_argument( "zero denumerator in Rational" );
+		}
+	}
+	catch (char *invalid_argument)
+	{
+		cout << invalid_argument << endl;
+	}
 	bcd(num, denum);
 }
 

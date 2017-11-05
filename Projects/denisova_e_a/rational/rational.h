@@ -30,7 +30,6 @@ struct Rational{
     static void bcd(int& num, int& denum);
 	std::ostream& writeTo(std::ostream& ostrm) const;
 	std::istream& readFrom(std::istream& istrm);
-
 	int num;
 	int denum;
 
