@@ -25,23 +25,20 @@ Array::Array(const int rhs)
 
 int& Array::operator[](const ptrdiff_t i)
 {
-	if ((i>0)&&(i < capacity_))
+	try
 	{
-		return *(pdata + i);
+		if ((i > 0) && (i < capacity_))
+		{
+			return *(pdata + i);
+		}
+		else
+		{
+			throw invalid_argument("неверный индекс");
+		}
 	}
-	else
+	catch (char *invalid_argument)
 	{
-		try
-		{
-			if ((i < 0) && (i >= capacity_))
-			{
-				throw invalid_argument("неверный индекс");
-			}
-		}
-		catch (char *invalid_argument)
-		{
-			cout << invalid_argument << endl;
-		}
+		cout << invalid_argument << endl;
 	}
 }
 
@@ -117,37 +114,37 @@ void Array::remote(const int rhs, const int lhs)
 
 void Array::resize(const int rhs)
 {
-	if (rhs > size_)
-	{
-		capacity_ = rhs;
-		int* newpdata = new int[capacity_];
-		for (int i = 0; i < size_; i++)
-		{
-			*(newpdata + i) = *(pdata + i);
-		}
-		pdata = newpdata;
-	}
-	if ((rhs < size_) && (rhs < capacity_) && (rhs > 0))
-	{
-		size_ = rhs;
-		capacity_ = rhs;
-		int* newpdata = new int[capacity_];
-		for (int i = 0; i < size_; i++)
-		{
-			*(newpdata + i) = *(pdata + i);
-		}
-		pdata = newpdata;
-	}
-	if (rhs == 0)
-	{
-		Array::~Array();
-	}
 	try
 	{
-		if (rhs < 0)
+		if (rhs > size_)
 		{
-			throw invalid_argument("неверный индекс");
+			capacity_ = rhs;
+			int* newpdata = new int[capacity_];
+			for (int i = 0; i < size_; i++)
+			{
+				*(newpdata + i) = *(pdata + i);
+			}
+			pdata = newpdata;
 		}
+		if ((rhs < size_) && (rhs < capacity_) && (rhs > 0))
+		{
+			size_ = rhs;
+			capacity_ = rhs;
+			int* newpdata = new int[capacity_];
+			for (int i = 0; i < size_; i++)
+			{
+				*(newpdata + i) = *(pdata + i);
+			}
+			pdata = newpdata;
+		}
+		if (rhs == 0)
+		{
+			Array::~Array();
+		}
+	    if (rhs < 0)
+	    {
+			throw invalid_argument("неверный индекс");
+	    }
 	}
 	catch (char *invalid_argument)
 	{
