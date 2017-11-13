@@ -117,18 +117,26 @@ void Array::remote(const int rhs, const int lhs)
 
 void Array::resize(const int rhs)
 {
-	if ((rhs > size_) && (rhs > capacity_))
+	if (rhs > size_)
 	{
 		capacity_ = rhs;
-	}
-	if ((rhs > size_) && (rhs < capacity_))
-	{
-		capacity_ = rhs;
+		int* newpdata = new int[capacity_];
+		for (int i = 0; i < size_; i++)
+		{
+			*(newpdata + i) = *(pdata + i);
+		}
+		pdata = newpdata;
 	}
 	if ((rhs < size_) && (rhs < capacity_) && (rhs > 0))
 	{
 		size_ = rhs;
 		capacity_ = rhs;
+		int* newpdata = new int[capacity_];
+		for (int i = 0; i < size_; i++)
+		{
+			*(newpdata + i) = *(pdata + i);
+		}
+		pdata = newpdata;
 	}
 	if (rhs == 0)
 	{
