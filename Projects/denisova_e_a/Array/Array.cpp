@@ -27,7 +27,7 @@ int& Array::operator[](const ptrdiff_t i)
 {
 	if ((i>0)&&(i < capacity_))
 	{
-		return pdata[i];
+		return *(pdata + i);
 	}
 	else
 	{
