@@ -19,6 +19,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixU", "MatrixU\MatrixU.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixD", "MatrixD\MatrixD.vcxproj", "{C02B1CEC-BA4F-4514-91A2-CA86D7F05A43}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stackl", "stackl\stackl.vcxproj", "{7C1982D2-1046-4309-A453-FAE1DD34AC1A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "priorityQueuel", "priorityQueuel\priorityQueuel.vcxproj", "{860C4CBC-D0F9-4BF5-84F3-642F4D0234BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -57,6 +61,14 @@ Global
 		{C02B1CEC-BA4F-4514-91A2-CA86D7F05A43}.Debug|Win32.Build.0 = Debug|Win32
 		{C02B1CEC-BA4F-4514-91A2-CA86D7F05A43}.Release|Win32.ActiveCfg = Release|Win32
 		{C02B1CEC-BA4F-4514-91A2-CA86D7F05A43}.Release|Win32.Build.0 = Release|Win32
+		{7C1982D2-1046-4309-A453-FAE1DD34AC1A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C1982D2-1046-4309-A453-FAE1DD34AC1A}.Debug|Win32.Build.0 = Debug|Win32
+		{7C1982D2-1046-4309-A453-FAE1DD34AC1A}.Release|Win32.ActiveCfg = Release|Win32
+		{7C1982D2-1046-4309-A453-FAE1DD34AC1A}.Release|Win32.Build.0 = Release|Win32
+		{860C4CBC-D0F9-4BF5-84F3-642F4D0234BD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{860C4CBC-D0F9-4BF5-84F3-642F4D0234BD}.Debug|Win32.Build.0 = Debug|Win32
+		{860C4CBC-D0F9-4BF5-84F3-642F4D0234BD}.Release|Win32.ActiveCfg = Release|Win32
+		{860C4CBC-D0F9-4BF5-84F3-642F4D0234BD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
