@@ -146,8 +146,6 @@ public:
         gamedoc_p->setArray(**gamearr);
         gamefile_p->resize(0);
         gamefile_p->write(gamedoc_p->toJson());
-        if ((*gamearr)->at(0).toObject().value("SaveID_1").toInt() == 8)
-            start_game->ui->textBrowser->append("true");
     }
 
     static void parsing_tree(tree_element *head, Game *start_game, Saves *save_game, tree_element* save_1, tree_element* save_2, tree_element* save_3, tree_element* save_4, QJsonArray** gamearr, QFile* gamefile_p, QJsonDocument *gamedoc_p, press_to_save *press_to_save_window)
